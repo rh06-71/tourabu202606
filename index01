@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>お申込みページ</title>
+ 
+<!-- ============================================================
+     ▼▼▼ ここだけ書き換えれば使い回せます ▼▼▼
+============================================================ -->
+<script>
+  // 公演タイトル
+  const EVENT_TITLE = "公演タイトルをここに";
+  // 補足（日付・受付名など。不要なら空文字 "" に）
+  const EVENT_SUB   = "チケット受付 / 抽選先行";
+  // 申込先URL（ローチケなどの本物の申込URL）
+  const APPLY_URL   = "https://l-tike.com/st1/2hmzyg8o7d9rw0d25x2q/Tt/Ttg010agreement/index";
+  // ボタンの文言
+  const BTN_LABEL   = "お申込みはこちら";
+</script>
+<!-- ============================================================
+     ▲▲▲ 書き換えるのはここまで ▲▲▲
+============================================================ -->
+ 
+<style>
+  :root{
+    --ink:#1c2230;
+    --sub:#6b7385;
+    --bg-1:#eef1f8;
+    --bg-2:#f7f4ee;
+    --card:#ffffff;
+    --accent:#e0566b;     /* ボタンの色。好みで変更可 */
+    --accent-press:#c8455a;
+    --line:#e8eaf0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 90% at 50% -10%, var(--bg-2) 0%, var(--bg-1) 55%, #e7eaf3 100%);
+    min-height:100dvh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;
+    max-width:400px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:38px 28px 30px;
+    box-shadow:0 18px 50px -22px rgba(28,34,48,.35);
+    text-align:center;
+  }
+  .badge{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.14em;
+    font-weight:700;
+    color:var(--accent);
+    background:rgba(224,86,107,.1);
+    padding:6px 13px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  .title{
+    font-size:23px;
+    line-height:1.45;
+    font-weight:800;
+    letter-spacing:.01em;
+    word-break:break-word;
+  }
+  .sub{
+    margin-top:10px;
+    font-size:14px;
+    color:var(--sub);
+    line-height:1.6;
+  }
+  .divider{
+    height:1px;
+    background:var(--line);
+    margin:26px 0;
+  }
+  .btn{
+    display:block;
+    width:100%;
+    background:var(--accent);
+    color:#fff;
+    font-size:17px;
+    font-weight:800;
+    letter-spacing:.02em;
+    text-decoration:none;
+    padding:18px 20px;
+    border-radius:14px;
+    box-shadow:0 10px 24px -10px rgba(224,86,107,.7);
+    transition:transform .08s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{background:var(--accent-press);}
+  .btn:active{transform:translateY(2px);box-shadow:0 4px 12px -6px rgba(224,86,107,.7);}
+  .btn:focus-visible{outline:3px solid #1c2230;outline-offset:3px;}
+  .note{
+    margin-top:18px;
+    font-size:12px;
+    color:var(--sub);
+    line-height:1.7;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <span class="badge" id="badge"></span>
+    <h1 class="title" id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="divider"></div>
+    <a class="btn" id="applyBtn" href="#" rel="noopener">お申込みはこちら</a>
+    <p class="note">
+      ボタンを押すと申込ページへ移動します。<br>
+      ご利用にはローソンチケットへのログインが必要です。
+    </p>
+  </main>
+ 
+  <script>
+    document.getElementById("badge").textContent = EVENT_SUB ? "TICKET" : "";
+    document.getElementById("title").textContent = EVENT_TITLE;
+    const sub = document.getElementById("sub");
+    if (EVENT_SUB) { sub.textContent = EVENT_SUB; } else { sub.style.display = "none"; }
+    const btn = document.getElementById("applyBtn");
+    btn.textContent = BTN_LABEL;
+    btn.href = APPLY_URL;
+    document.title = EVENT_TITLE + " | お申込み";
+  </script>
+</body>
+</html>
